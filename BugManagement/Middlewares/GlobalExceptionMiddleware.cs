@@ -26,7 +26,8 @@ namespace BugManagement.Middlewares
                 _logger.LogError(ex, "Unhandled exception");
                 context.Response.ContentType = "application/json";
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                var result = JsonSerializer.Serialize(new { message = "An unexpected error occurred." });
+                //var result = JsonSerializer.Serialize(new { message = "An unexpected error occurred." });
+                var result = JsonSerializer.Serialize(new { message = ex.Message });
                 await context.Response.WriteAsync(result);
             }
         }

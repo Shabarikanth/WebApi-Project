@@ -104,15 +104,15 @@ VALUES (@Title, @Description, @Status, @Severity, @AssignedTo, SYSUTCDATETIME())
         {
             return new Bug
             {
-                Id = r.GetInt32(r.GetOrdinal("Id")),
-                Title = r.GetString(r.GetOrdinal("Title")),
-                Description = r.IsDBNull(r.GetOrdinal("Description")) ? null : r.GetString(r.GetOrdinal("Description")),
-                Status = r.GetString(r.GetOrdinal("Status")),
-                Severity = r.IsDBNull(r.GetOrdinal("Severity")) ? null : r.GetString(r.GetOrdinal("Severity")),
-                AssignedTo = r.IsDBNull(r.GetOrdinal("AssignedTo")) ? null : r.GetString(r.GetOrdinal("AssignedTo")),
+                Id = Convert.ToInt32(r["Id"]),
+                Title = r["Title"]?.ToString() ?? "",
+                Description = r["Description"] == DBNull.Value ? null : r["Description"].ToString(),
+                Status = r["Status"]?.ToString() ?? "Open",
+                Severity = r["Severity"] == DBNull.Value ? null : r["Severity"].ToString(),
+                AssignedTo = r["AssignedTo"] == DBNull.Value ? null : r["AssignedTo"].ToString(),
                 CreatedAt = r.GetDateTime(r.GetOrdinal("CreatedAt")),
-                UpdatedAt = r.IsDBNull(r.GetOrdinal("UpdatedAt")) ? null : r.GetDateTime(r.GetOrdinal("UpdatedAt")),
-                IsDeleted = r.GetBoolean(r.GetOrdinal("IsDeleted"))
+                UpdatedAt = r["UpdatedAt"] == DBNull.Value ? null : (DateTime?)Convert.ToDateTime(r["UpdatedAt"]),
+                IsDeleted = Convert.ToBoolean(r["IsDeleted"])
             };
         }
     }
