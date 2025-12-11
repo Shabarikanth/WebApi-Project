@@ -1,0 +1,37 @@
+<!-- src/app/components/bug-form/bug-form.component.html -->
+<div class="container mt-3">
+  <h3 *ngIf="!id">Create Bug</h3>
+  <h3 *ngIf="id">Edit Bug</h3>
+
+  <div class="mb-3">
+    <label class="form-label">Title</label>
+    <input class="form-control" [(ngModel)]="model.title" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Description</label>
+    <textarea class="form-control" rows="4" [(ngModel)]="model.description"></textarea>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <label class="form-label">Status</label>
+      <select class="form-select" [(ngModel)]="model.status">
+        <option *ngFor="let s of statuses" [value]="s">{{ s }}</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Severity</label>
+      <input class="form-control" [(ngModel)]="model.severity" />
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Assigned To</label>
+      <input class="form-control" [(ngModel)]="model.assignedTo" />
+    </div>
+  </div>
+
+  <div>
+    <button class="btn btn-primary me-2" (click)="save()">Save</button>
+    <a class="btn btn-secondary" routerLink="/">Cancel</a>
+  </div>
+</div>

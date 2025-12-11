@@ -1,0 +1,33 @@
+<!-- src/app/components/bug-list/bug-list.component.html -->
+<div class="container mt-3">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3>Bug Tracker</h3>
+    <a routerLink="/create" class="btn btn-primary">Create Bug</a>
+  </div>
+
+  <div *ngIf="loading">Loading...</div>
+
+  <div class="row">
+    <div class="col-md-4" *ngFor="let s of statuses">
+      <div class="card mb-3">
+        <div class="card-header"><strong>{{ s }}</strong></div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let bug of bugs.filter(b => b.status === s)">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <div><strong>{{ bug.title }}</strong></div>
+                <div class="small text-muted">
+                  {{ bug.assignedTo || 'Unassigned' }} • {{ bug.severity || '—' }}
+                </div>
+              </div>
+              <div class="btn-group btn-group-sm">
+                <button class="btn btn-outline-secondary" (click)="edit(bug.id)">Edit</button>
+                <button class="btn btn-outline-danger" (click)="delete(bug.id)">Delete</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
