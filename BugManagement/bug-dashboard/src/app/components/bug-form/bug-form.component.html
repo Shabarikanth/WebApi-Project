@@ -1,0 +1,45 @@
+<div class="container mt-4">
+
+  <h2>Create Bug</h2>
+
+  <form (ngSubmit)="save()" class="mt-3">
+
+    <div class="mb-3">
+      <label>Title</label>
+      <input class="form-control" [(ngModel)]="bug.title" name="title" required />
+    </div>
+
+    <div class="mb-3">
+      <label>Description</label>
+      <textarea class="form-control" [(ngModel)]="bug.description" name="description"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label>Status</label>
+      <select class="form-control" [(ngModel)]="bug.status" name="status">
+        <option>Open</option>
+        <option>Work In Progress</option>
+        <option>Closed</option>
+        <option>Hold</option>
+        <option>Rejected</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label>Severity</label>
+      <select class="form-control" [(ngModel)]="bug.severity" name="severity">
+        <option>Low</option>
+        <option>Medium</option>
+        <option>High</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label>Assigned To</label>
+      <input class="form-control" [(ngModel)]="bug.assignedTo" name="assignedTo" />
+    </div>
+
+    <button class="btn btn-primary" type="submit">Save</button>
+  </form>
+
+</div>
